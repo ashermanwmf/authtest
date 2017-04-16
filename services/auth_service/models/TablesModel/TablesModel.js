@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 class TablesModel extends ApplicationModel {
   constructor() {
     super();
-    this.getSync = this.getSync.bind(this);
+
     this._init_()
       .then(() =>{
         this.__setSync = this._sync_();
@@ -33,11 +33,6 @@ class TablesModel extends ApplicationModel {
     });
   }
 
-  set __setUserTable(UserTable) {
-    this._user_model = UserTable;
-    return null;
-  }
-
   set __setSync(sync) {
     this._sync = sync;
     return null;
@@ -48,19 +43,8 @@ class TablesModel extends ApplicationModel {
   }
 
   _setUserTable() {
-    this.__setUserTable = this.getDB.define('user', {
-      id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
-      first_name: Sequelize.STRING,
-      last_name: Sequelize.STRING,
-      email: Sequelize.STRING,
-      username: Sequelize.STRING,
-      password: Sequelize.STRING,
-      salt: Sequelize.STRING
-    });
+    this._user_model = this.getDB
+      .define('user', this._getUserSchema);
     return this;
   }
 

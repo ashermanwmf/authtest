@@ -1,9 +1,10 @@
+const Schema = require('./Schema');
 const Sequelize = require('sequelize');
 
-class ApplicationModel {
+class ApplicationModel extends Schema {
   constructor() {
-    this.getDBPromise = this.getDBPromise.bind(this);
-
+    super();
+    
     this.__init__()
       ._setDB_()
       ._authenticate_();

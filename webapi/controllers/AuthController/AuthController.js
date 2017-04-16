@@ -1,6 +1,6 @@
+const ApplicationController = require('../ApplicationController/ApplicationController');
 const axios = require('axios');
 const stringify = require('json-stringify-safe');
-const ApplicationController = require('../ApplicationController/ApplicationController');
 
 class AuthController extends ApplicationController {
   constructor() {
