@@ -1,6 +1,6 @@
-const LoginController = require('./LoginController/index');
-const SignUpController = require('./SignUpController/index');
-const UserModel = require('../models/UserModel/index');
+const LoginController = require('./LoginController/LoginController');
+const SignUpController = require('./SignUpController/SignUpController');
+const UserModel = require('../models/UserModel/UserModel');
 
 module.exports = (app) =>{
 
@@ -13,12 +13,12 @@ module.exports = (app) =>{
   });
 
   /** Login **/
-  app.post('/api/authenticate/user', LoginController.authenticate.bind(app, LoginController));
+  app.post('/api/authenticate/user', new LoginController().authenticate.bind(app, LoginController));
 
   /** SignUp **/
   app.post('/api/create/user', 
-    SignUpController.createUser.bind(app, SignUpController),
-    UserModel.saveUser.bind(app, UserModel, SignUpController)
+    new SignUpController().createUser.bind(app, new SignUpController()),
+    new UserModel().saveUser.bind(app, new UserModel())
   );
 
 };

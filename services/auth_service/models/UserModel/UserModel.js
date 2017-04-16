@@ -5,15 +5,15 @@ class UserModel extends TablesModel {
     super();
   }
 
-  saveUser(self, SignUpController, req, res, next) {
+  saveUser(self, req, res, next) {
     const UserModel = self._user_model;
-    const salt = SignUpController.getSalt;
-    const username = SignUpController.getUsername;
-    const password = SignUpController.getPassword;
-    const firstName = SignUpController.getFirstName;
-    const lastName = SignUpController.getLastName;
-    const email = SignUpController.getEmail;
-    const resolve = req.__previous__.resolve;
+    const username = res.__previous__.username;
+    const password = res.__previous__.password;
+    const salt = res.__previous__.salt;
+    const firstName = res.__previous__.first_name;
+    const lastName = res.__previous__.last_name;
+    const email = res.__previous__.email;
+    const resolve = res.__previous__.resolve;
 
     self.getSync().then(() =>{
       console.log(firstName, lastName, email)

@@ -114,10 +114,11 @@ class SignUpController extends ApplicationController {
 
   createUser(self, req, res, next) {
     const { username, password, first_name, last_name, email } = req.body;
-
-    this.__setFirstName = first_name;
-    this.__setLastName = last_name;
-    this.__setEmail = email;
+    req.__previous__ = {};
+    req.__previous__.username = username;
+    req.__previous__.first_name = first_name;
+    req.__previous__.last_name = last_name;
+    req.__previous__.email =  email;
 
     self._setSalt()
       .then(() =>{
@@ -130,10 +131,11 @@ class SignUpController extends ApplicationController {
       })
       .then(() =>{
         return new Promise((resolve, reject) =>{
-          req.__previous__ = {
-            resolve: resolve,
-            context: 'SignupController#createUser'
-          }
+          req.__previous__.resolve = resolve;
+          req.__previous__.salt = self.getSalt;
+          req.__previous__.password = self.getPassword;
+          req.__previous__.context = 'SignupController#createUser';
+
           next();
         });
       })

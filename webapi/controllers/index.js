@@ -1,4 +1,4 @@
-const AuthController = require('./AuthController/index');
+const AuthController = require('./AuthController/AuthController');
 
 module.exports = (app) =>{
   
@@ -11,7 +11,7 @@ module.exports = (app) =>{
   });
 
   /** Auth **/
-  app.post('/api/login', AuthController.login);
-  app.post('/api/signup', AuthController.signup);
+  app.post('/api/login', new AuthController().login);
+  app.post('/api/signup', new AuthController().signup);
 
 };

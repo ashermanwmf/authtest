@@ -23,11 +23,11 @@ class AuthController extends ApplicationController {
       .then(stringify)
       .then(JSON.parse)
       .then((data) =>{
-        if (data.isNewRecord) {
+        if (data.data.isNewRecord || data.status <= 200) {
           res.status(data.status)
             .send(data);
         } else {
-          res.status(409)
+          res.status(data.status)
             .send({message: new Error('Conflict, existing user')});
         }
       })
