@@ -9,15 +9,6 @@ class TablesModel extends ApplicationModel {
       .then(() =>{
         this.__setSync = this._sync_();
       });
-    // const User = db.define('user', {
-    //   id: {
-    //     type: Sequelize.INTEGER,
-    //     primaryKey: true,
-    //     autoIncrement: true
-    //   },
-    //   name: Sequelize.STRING, // facebook name
-    //   email: Sequelize.STRING // facebook email or id
-    // });  
   }
 
   _init_() {
