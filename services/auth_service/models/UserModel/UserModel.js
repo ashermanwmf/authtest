@@ -6,6 +6,7 @@ class UserModel extends TablesModel {
   }
 
   saveUser(self, req, res, next) {
+    // TODO: Investigate weird switch to res from previously set req.
     const UserModel = self._user_model;
     const username = res.__previous__.username;
     const password = res.__previous__.password;
